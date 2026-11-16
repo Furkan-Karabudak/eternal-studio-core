@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,28 +22,22 @@ try {
 
   const version = `v${match[1]}`;
 
-  const existingTags = execSync('git tag', { cwd: ROOT_DIR, encoding: 'utf-8' })
+  const existingTags = execFileSync('git', ['tag'], { cwd: ROOT_DIR, encoding: 'utf-8' })
     .split('\n')
     .map((t) => t.trim())
     .filter(Boolean);
 
   if (existingTags.includes(version)) {
-    console.log(`\n\x1b[33mℹ Tag ${version} already exists, skipping.\x1b[0m\n`);
+    console.log(`\n\x1b[33mℹ Local tag ${version} already exists, skipping.\x1b[0m\n`);
     process.exit(0);
   }
 
-  execSync(`git tag -a "${version}" -m "release ${version}"`, {
+  execFileSync('git', ['tag', '-a', version, '-m', `release ${version}`], {
     cwd: ROOT_DIR,
     stdio: 'inherit',
   });
-  console.log(`\n\x1b[32m✔ Tag ${version} successfully attached to the commit.\x1b[0m`);
-
-  execSync(`git push origin "${version}"`, {
-    cwd: ROOT_DIR,
-    stdio: 'inherit',
-  });
-  console.log(`\x1b[32m✔ Tag ${version} successfully pushed to GitHub.\x1b[0m\n`);
+  console.log(`\n\x1b[32m✔ Local tag ${version} attached to commit (will push on git push).\x1b[0m\n`);
 } catch (err) {
-  console.error('\n\x1b[31m✖ Failed to create or push tag:\x1b[0m', err.message);
+  console.error('\n\x1b[31m✖ Failed to create local tag:\x1b[0m', err.message);
   process.exit(1);
 }

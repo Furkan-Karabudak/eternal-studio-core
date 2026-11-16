@@ -6,6 +6,7 @@
   "scripts": {
     "bumpy": "node scripts/bumpy.mjs",
     "tag-commit": "node scripts/tag-commit.mjs",
+    "push-tags": "node scripts/push-tags.mjs",
     "dev": "node scripts/build-local.mjs"
   }
 }
