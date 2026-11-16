@@ -1,0 +1,40 @@
+# Rust / Cargo
+/target/
+Cargo.lock
+
+# Python / Maturin
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.so
+*.dll
+*.dylib
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Node (versioning scripts)
+node_modules/
+
+# Environment & local secrets
+.env
+.env.*
+!.env.example
+
+# OS & Editors
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/

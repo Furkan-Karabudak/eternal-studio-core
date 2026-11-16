@@ -1,0 +1,24 @@
+[package]
+name = "eternal-studio-core"
+version = "0.0.1"
+edition = "2021"
+license = "Apache-2.0"
+description = "High-performance Rust native core engine for Eternal Studio."
+readme = "README.md"
+repository = "https://github.com/Furkan-Karabudak/eternal-studio-core"
+
+[lib]
+name = "_core"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+extension-module = ["pyo3/extension-module"]
+
+[dependencies]
+pyo3 = { version = "0.24", features = ["abi3-py311"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

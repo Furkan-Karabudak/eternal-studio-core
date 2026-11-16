@@ -1,0 +1,11 @@
+{
+  "name": "eternal-studio-core",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bumpy": "node scripts/bumpy.mjs",
+    "tag-commit": "node scripts/tag-commit.mjs",
+    "dev": "node scripts/build-local.mjs"
+  }
+}
